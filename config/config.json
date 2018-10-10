@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "bam",
+    "username": "",
     "password": null,
     "database": "bam_db",
     "host": "127.0.0.1",

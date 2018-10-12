@@ -54,6 +54,12 @@ app.get('/stopwatch', (req, res, next) => {
     })
 });
 
+app.get('/analysis', (req, res, next) => {
+    res.render('pages/analysis', {
+        
+    })
+});
+
 app.get('/profile', (req, res, next) => {
     res.render('pages/profile', {
 

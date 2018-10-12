@@ -8,20 +8,167 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css">
     <style>
+        body {
+            margin: 0;
+        }
+
+        .top-bar {
+            display: flex;
+            flex-direction: row;
+            background-color: #3af;
+            border-bottom: 2px solid black;
+            position: absolute;
+            width: 100%;
+        }
+
+        .top-bar * {
+            margin: 5px 10px;
+        }
+
+        #draw {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/Uppercut2.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 40%;
+            /* background-size: contain; */
+            display: block;
+            z-index: -1;
+        }
         
     </style>
 
 </head>
-<body id="<%= pageID %>">
-    <% include ../partials/header.ejs %>
+<body>
     
-    
+    <div class="top-bar">
+        <button id="save-btn">Save</button>
+        <button id="undo-btn">Undo</button>
+        <button id="clear-btn">Clear</button>
+        <input type="color" id="color-picker">
+        <input type="range" id="brush-size" min="1" max="50" value="10">
+        <select id="backgrounds">
+            <option>Select basic demonstration</option>
+            <option value="http://t2.gstatic.com/images?q=tbn:ANd9GcT-wQk0CTwl93EmiaUaoIjpMVmwHDNBz_7hN0UNpAz5DCWq66Sp-w">Background 1</option>
+            <option value="https://upload.wikimedia.org/wikipedia/commons/e/e1/Uppercut2.jpg">Uppercut</option>    
+        </select>
+    </div>
 
+    <canvas id="draw"></canvas>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-  
+    
+    <script>
+        // background select
+        var body = $('#draw');
+        $('#backgrounds').bind('change', function(event){
+            var bg = $(this).val();
+            console.log(bg);
+            if(bg == null || typeof bg === 'undefined' || $.trim(bg) === '')
+                body.css('background-image', '');
+            else
+                body.css('background-image', "url('" + bg + "')");       
+            
+        });
+
+        // canvas
+        var canvas, ctx,
+        brush = {
+            x: 0,
+            y: 0,
+            color: '#000000',
+            size: 10,
+            down: false,
+        },
+        strokes = [],
+        currentStroke = null;
+
+        function redraw () {
+            ctx.clearRect(0, 0, canvas.width(), canvas.height());
+            ctx.lineCap = 'round';
+            for (var i = 0; i < strokes.length; i++) {
+                var s = strokes[i];
+                ctx.strokeStyle = s.color;
+                ctx.lineWidth = s.size;
+                ctx.beginPath();
+                ctx.moveTo(s.points[0].x, s.points[0].y);
+                for (var j = 0; j < s.points.length; j++) {
+                    var p = s.points[j];
+                    ctx.lineTo(p.x, p.y);
+                }
+                ctx.stroke();
+            }
+        }
+
+        function init () {
+            canvas = $('#draw');
+            canvas.attr({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+            ctx = canvas[0].getContext('2d');
+
+            function mouseEvent (e) {
+                brush.x = e.pageX;
+                brush.y = e.pageY;
+
+                currentStroke.points.push({
+                    x: brush.x,
+                    y: brush.y,
+                });
+
+                redraw();
+            }
+
+            canvas.mousedown(function (e) {
+                brush.down = true;
+
+                currentStroke = {
+                    color: brush.color,
+                    size: brush.size,
+                    points: [],
+                };
+
+                strokes.push(currentStroke);
+
+                mouseEvent(e);
+            }).mouseup(function (e) {
+                brush.down = false;
+
+                mouseEvent(e);
+
+                currentStroke = null;
+            }).mousemove(function (e) {
+                if (brush.down)
+                    mouseEvent(e);
+            });
+
+            // $('#save-btn').click(function () {
+            //     window.open(canvas[0].toDataURL());
+            // });
+
+            $('#undo-btn').click(function () {
+                strokes.pop();
+                redraw();
+            });
+
+            $('#clear-btn').click(function () {
+                strokes = [];
+                redraw();
+            });
+
+            $('#color-picker').on('input', function () {
+                brush.color = this.value;
+            });
+
+            $('#brush-size').on('input', function () {
+                brush.size = this.value;
+            });
+        }
+        $(init);
+    </script>
 </body>
 </html>

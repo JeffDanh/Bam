@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 const promise = require('bluebird');
 
 app.set('view engine', 'ejs');
 
 app.use(require('./routes/login'));
-
 app.use(require('./routes/register'));
 app.use(require('./routes/profile'));
 // app.use(require('./routes/logout'));
@@ -43,12 +43,13 @@ app.locals.siteTitle = "Bam";
 
 app.get('/', (req, res, next) => {
     res.render('pages/index', {
-        
+        user: req.user
+
     })
 });
 
-app.get('/teaminfo', (req, res, next) => {
-    res.render('pages/teaminfo', {
+app.get('/stopwatch', (req, res, next) => {
+    res.render('pages/stopwatch', {
         
     })
 });
@@ -61,16 +62,92 @@ app.get('/profile', (req, res, next) => {
 
 app.get('/login', (req, res, next) => {
     res.render('pages/login', {
-        
+        user: req.user
     })
 });
 
-app.get('./signup', (req, res, next) => {
-    res.render('pages/signup', {
+app.get('/logout', (req, res) => {
+    
+    req.session.destroy(function(e){
+        res.clearCookie('session');
+        req.logout();
+        res.redirect('/');
+    })
+
+});
+
+app.get('/drawingboard', (req, res, next) => {
+    res.render('pages/drawingboard', {
 
     });
 });
+// Chatroom
+var numUsers = 0;
 
+io.on('connection', (socket) => {
+  var addedUser = false;
+
+  // when the client emits 'new message', this listens and executes
+  socket.on('new message', (data) => {
+    // we tell the client to execute 'new message'
+    socket.broadcast.emit('new message', {
+      username: socket.username,
+      message: data
+    });
+  });
+
+  // when the client emits 'add user', this listens and executes
+  socket.on('add user', (username) => {
+    if (addedUser) return;
+
+    // we store the username in the socket session for this client
+    socket.username = username;
+    ++numUsers;
+    addedUser = true;
+    socket.emit('login', {
+      numUsers: numUsers
+    });
+    // echo globally (all clients) that a person has connected
+    socket.broadcast.emit('user joined', {
+      username: socket.username,
+      numUsers: numUsers
+    });
+  });
+
+  // when the client emits 'typing', we broadcast it to others
+  socket.on('typing', () => {
+    socket.broadcast.emit('typing', {
+      username: socket.username
+    });
+  });
+
+  // when the client emits 'stop typing', we broadcast it to others
+  socket.on('stop typing', () => {
+    socket.broadcast.emit('stop typing', {
+      username: socket.username
+    });
+  });
+
+  // when the user disconnects.. perform this
+  socket.on('disconnect', () => {
+    if (addedUser) {
+      --numUsers;
+
+      // echo globally that this client has left
+      socket.broadcast.emit('user left', {
+        username: socket.username,
+        numUsers: numUsers
+      });
+    }
+  });
+});
+
+// White Board
+function onConnection(socket){
+    socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+}
+  
+io.on('connection', onConnection);
 
 
 // app.post('/searchResult', function(req, res){
@@ -92,7 +169,7 @@ app.get('./signup', (req, res, next) => {
 //         // ^ data is the response from the server
 //         // populate this with parsed data var renderData = { }
 //         var renderData = { name: name, description: description, poster: poster, language: language, voteavg: voteavg, backdrop: backdrop, genre: genre}
-//         res.render('pages/movieinfo', renderData)
+//         res.render('pages/analysis', renderData)
 //     }
     
 //     axios.get(url)

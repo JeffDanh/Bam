@@ -8,18 +8,29 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css">
     <style>
-        form{
-            padding: 0px 20px 20px 20px;
+        #login-box{
+            background: whitesmoke;
+            width: 400px;
+            height: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -300px;
+            margin-left: -200px;
+            
+        }
+        #reg{
+            padding: 20px;
         }
     </style>
 
 </head>
-<body>
+<body id="<%= pageID %>">
     <% include ../partials/header.ejs %>
     <div class="signup">
     <div id="login-box">
-        <form action="/register" method="POST">
-            <!-- <h1><%= title %></h1> -->
+        <form id="reg" action="/register" method="POST">
+            <h1><%= title %></h1>
             <div class="form-group">
                 <label for="firstname">First Name</label>
                 <input type="text" name= "fname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name">

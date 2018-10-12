@@ -15,7 +15,7 @@ router.get('/register', function(req, res) {
     
 });
 
-router.post('/register',function(req,res){
+router.post('/register', function(req,res){
 
     // let username = req.body.username;
     console.log('username');
@@ -32,7 +32,7 @@ router.post('/register',function(req,res){
     })
     .catch(error => {
         // error;
-        error.log('Could not create account.');
+        // error.log('Could not create account.');
     });
   
     //save to database

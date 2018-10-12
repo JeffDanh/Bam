@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style>
+        #container{
+            /* text-align: center; */
+            margin-top: 200px;
+            position: absolute;
+            left: 50%;
+            margin-left: -200px;
+        }
+        #btn-container{
+            margin-top: 350px;
+            position: absolute;
+            left: 50%;
+            margin-left: -100px;
+        }
+        #time{
+            font-family: "Lato";
+            font-size: 100px;
+            font-weight: 100;
+        }
+        button{
+            /* text-align: center; */
+            width: 100px;
+            height: 35px;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <% include ../partials/header.ejs %>
+    
+    <div id="container">
+        <h1 id="time">00:00.000</h1>
+    </div>
+    <div id="btn-container">
+        <button id="toggle">START</button>
+        <button id="reset">RESET</button>
+    </div>
+
+
+
+    <script>
+        function Stopwatch(e){
+            var time = 0;
+            var interval;
+            var offset;
+
+            function update(){
+                if(this.isOn){
+                    time += delta();
+                }
+                
+                var formattedTime = timeFormatter(time);
+                e.textContent = formattedTime;
+            }
+            function delta(){
+                var now = Date.now();
+                var timePassed = now - offset;
+                offset = now;
+                return timePassed;
+            }
+            function timeFormatter(timeInMilliseconds){
+                var time = new Date(timeInMilliseconds);
+                var minutes = time.getMinutes().toString();
+                var seconds = time.getSeconds().toString();
+                var milliseconds = time.getMilliseconds().toString();
+                
+                if(minutes.length < 2){
+                    minutes = '0' + minutes;
+                }
+                if(seconds.length < 2){
+                    seconds = '0' + seconds;
+                }
+                while(milliseconds.length < 3){
+                    milliseconds = '0' + milliseconds;
+                }
+                return minutes + ':' + seconds + '.' + milliseconds;
+            }
+            this.isOn = false;
+
+            this.start = function(){
+                if(!this.isOn){
+                    interval = setInterval(update.bind(this), 40);
+                    offset = Date.now();
+                    this.isOn = true;
+                }
+            }
+            this.stop = function(){
+                if(this.isOn){
+                    clearInterval(interval);
+                    interval = null;
+                    this.isOn = false;
+                }
+            }
+            this.reset = function(){
+                if(!this.isOn){
+                    time = 0;
+                    update();
+                }
+                
+            }
+        }//end of function
+
+        var timer = document.getElementById('time');
+        var toggleBtn = document.getElementById('toggle');
+        var resetBtn = document.getElementById('reset');
+        
+        var watch = new Stopwatch(timer);
+
+        toggleBtn.addEventListener('click', function(){
+            if(watch.isOn){
+                watch.stop();
+                toggleBtn.textContent = 'START';
+            }else{
+                watch.start();
+                toggleBtn.textContent = 'STOP';
+            }
+        })
+
+        resetBtn.addEventListener('click', function(){
+            watch.reset();
+
+        })
+
+    </script>
+</body>
+</html>

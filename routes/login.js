@@ -32,7 +32,7 @@ router.use(passport.session());
 router.get('/login', function(req, res) {
 
     res.render('pages/login', {
-        // title: 'Login',
+        title: 'Login',
         pageID: 'login'
     });
 

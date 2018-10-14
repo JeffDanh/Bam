@@ -41,7 +41,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login',
-    passport.authenticate('local', { successRedirect: '/profile', failureRedirect: '/login' })
+    passport.authenticate('local', { successRedirect: '/regimen', failureRedirect: '/login' })
 );
 
 

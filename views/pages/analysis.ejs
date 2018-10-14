@@ -34,6 +34,11 @@
             display: block;
             z-index: -1;
         }
+
+        .videoSection{
+            height: 100%;
+            background-color: rgb(44, 44, 44);
+        }
         
     </style>
 
@@ -48,12 +53,50 @@
         <input type="range" id="brush-size" min="1" max="50" value="10">
         <select id="backgrounds">
             <option>Select basic demonstration</option>
-            <option value="http://t2.gstatic.com/images?q=tbn:ANd9GcT-wQk0CTwl93EmiaUaoIjpMVmwHDNBz_7hN0UNpAz5DCWq66Sp-w">Background 1</option>
-            <option value="https://upload.wikimedia.org/wikipedia/commons/e/e1/Uppercut2.jpg">Uppercut</option>    
+            <option value="images/jab.png">Jab</option>
+            <option value="images/cross.png">Cross</option>
+            <option value="images/hook.png">Hook</option>
+            <option value="images/uppercut.png">Uppercut</option>
+            <option value="images/elbow.png">Elbow strike</option>
+            <option value="images/knee.png">Knee strike</option>
+            <option value="images/frontkick.png">Front kick</option>
+            <option value="images/roundhouse.png">Roundhouse kick</option>
+            <option value="images/tieup.png">Tie up</option>
+            <option value="images/pummelclinch.png">Pummel clinch</option>
+            <option value="images/doubleleg.png">Double leg</option>
+            <option value="images/legtrip.png">Leg trip</option>
+            <option value="images/rearnakedchoke.png">Rear naked choke</option>
+            <option value="images/sidecontrol.png">Side control</option>
+            <option value="images/trianglechoke.png">Triangle choke</option>
+            <option value="images/kimura.png">Kimura</option>
+            <option value="images/fullmount.png">Full mount</option>
+            
+            <!-- <option value="https://upload.wikimedia.org/wikipedia/commons/e/e1/Uppercut2.jpg">Uppercut</option>     -->
         </select>
     </div>
 
     <canvas id="draw"></canvas>
+
+    <div class="videoSection">
+        hello
+        <div class="enterVideo">
+            <h3>Search Youtube </h3>
+        </div>
+        <form action='/searchResult' method='POST'>
+            <div class="search row">
+                <div class="col-md-4 col-1"></div>
+                <div class="col-md-4 col-10">
+                    <input type='text' id='searchbar' name='searchResult' placeholder='Search'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-1"></div>
+                <div class="col-md-4 col-10">
+                    <button type='submit' id='searchbutton'>Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

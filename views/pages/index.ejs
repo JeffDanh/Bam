@@ -9,36 +9,178 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        h5{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .img1{
+            position: relative;
+            /* opacity: 0.8;  */
+            /* background-position: center; */
+            /* background-size: cover; */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+        }
+        .img1{
+            opacity: 0.8;
+            background-image: url('Jeff2.png');
+            min-height: 100%;
+            background-position: center;
+            background-size: cover;
+        }
+        .section{
+            text-align: left;
+            padding: 100px 300px;
+            font-family:'Lato';
+            font-size: 18px;
+        }
+        .section-dark{
+            background-color: #282e34;
+            color: #ddd;
+        }
+        .img1-content{
+            position: absolute;
+            top: 40%;
+            width: 100%;
+            text-align: center;
+            color: whitesmoke;
+            font-family:'Arvo';
+        }
+        .display-5{
+            color: black; 
+            font-family: 'Arvo';
+        }
+        @media(max-width: 568px){
+            .img1{
+                background-attachment: scroll;
+            }
+        }
+        @media(max-width: 1280px){
+            .section{
+                padding: 100px 100px;
+            }
+        }
+        @media(max-width: 768px){
+            .section{
+                padding: 50px 50px;
+            }
+        }
+        @media(max-width: 360px){
+            .section{
+                padding: 20px 20px;
+            }
+        }
+        #cm{
+            min-height: 100%;
+            /* min-height: 800px; */
+            text-align: center;
+            margin-top: -50px;
+        }
+        .contact-links{
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            /* position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-28%, -28%); */
+            transform: translate(-3%, -3%);
+        }
+        @media(max-width: 360px){
+            .contact-links{
+                transform: translate(-7%, -7%);
+            }
+        }
+        .contact-links .cl{
+            list-style: none;
+        }
+        .contact-links .cl .cla{
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            text-align: center;
+            line-height: 75px;
+            font-size: 35px;
+            margin: 0px 10px;
+            display: block;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid whitesmoke;
+            z-index: 1;
+        }
+        .contact-links .cl .cla .fa{
+            position: relative;
+            color: #262626;
+            transition: .5s;
+        }
+        .contact-links .cl .cla:hover .fa{
+            color: #fff;
+            transform: rotateY(360deg);
+
+        }
+        .contact-links .cl .cla:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f00;
+            transition: .5s;
+            /* z-index: 2; */
+        }
+        .contact-links .cl .cla:hover:before{
+            top: 0;
+        }
+        .contact-links .cl:nth-child(1) .cla:before{
+            background: #0077B5;
+        }
+        .contact-links .cl:nth-child(2) .cla:before{
+            background: rgb(0, 255, 213);
+        }
+        .contact-links .cl:nth-child(3) .cla:before{
+            background: rgb(228, 110, 110);
+        }
+        .contact-links .cl:nth-child(4) .cla:before{
+            background: palegoldenrod;
+        }
+
+    </style>
   </head>
-  <body onload="loadrandomregimen1(); loadrandomregimen2(); loadrandomregimen3(); popularposter1(); popularposter2(); popularposter3();">
+  <body>
     <% include ../partials/header.ejs %>
-    <div class="row transbox">
-        <div class="col-12">
-            <div class="titlepage">
-                <h1>Regimen</h1>
-            </div>
-            <div class="enterMovie">
-                <h3>Search regimen </h3>
-            </div>
-            <form action='/searchResult' method='POST'>
-                <div class="search row">
-                <div class="col-md-4 col-1"></div>
-                <div class="col-md-4 col-10">
-                    <input type='text' id='searchbar' name='searchResult' placeholder='Search regimen'>
-                </div>
-            <!-- <div class="col-md-4 col-1"></div> -->
-                </div>
-                <div class="row">
-                    <div class="col-md-4 col-1"></div>
-                    <div class="col-md-4 col-10">
-                        <button type='submit' id='searchbutton'>GO!</button>
-                    </div>
-            </form>
-            <div class="col-md-5"></div>
-    </div>
-    </div>
+    <div class="img1">
+        <div class="img1-content">
+            
+            <h1 class="display-5">Bam</h1>
+            <hr style="width: 35%; height: 1px; background: deepskyblue;">
+            <h2 class="display-5"></h2>
+            
+            
+        </div>
     </div>
     
+    <section id="cm" class="section section-dark">
+        <h2>Contact Me</h2>
+        <br>
+        <p>  Yes, you can contact me! You can find me on LinkedIn and GitHub or reach me by email. You can also checkout my resume below.<br> 
+                <br>
+            
+        </p>
+        <p></p>
+        <ul class="contact-links">
+            <li class="cl"><a class="cla" href="https://www.linkedin.com/in/jeff-duong/"><i class="fa fa-linkedin"></i></a></li>
+            <li class="cl"><a class="cla" href="https://github.com/JeffDanh"><i class="fa fa-github"></i></a></li>
+            <li class="cl"><a class="cla" href="mailto:jeffdanh@gmail.com"><i class="fa fa-envelope"></i></a></li>
+            <li class="cl"><a class="cla" href="Resume.pdf"><i class="fa fa-file"></i></a></li>
+            
+        </ul>
+    </section>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script

@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(require('./routes/login'));
 app.use(require('./routes/register'));
 app.use(require('./routes/profile'));
-// app.use(require('./routes/analysis'));
+app.use(require('./routes/analysis'));
 app.use(require('./routes/logout'));
 app.use(require('./routes/regimen'));
 
@@ -57,11 +57,11 @@ app.get('/stopwatch', (req, res) => {
     })
 });
 
-app.get('/analysis', (req, res, next) => {
-    res.render('pages/analysis', {
+// app.get('/analysis', (req, res, next) => {
+//     res.render('pages/analysis', {
         
-    })
-});
+//     })
+// });
 
 app.get('/profile', (req, res, next) => {
     res.render('pages/profile', {
@@ -161,7 +161,7 @@ function onConnection(socket){
   
 io.on('connection', onConnection);
 
-app.post('/searchResult', function(req, res){
+app.post('/analysis', function(req, res){
     var video = req.body.searchResult;
     console.log(video);
     var url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBB0wDawlst6BcDYRbzpox6ZqcsidKXWJ0&part=snippet&order=relevance&maxResults=20";
@@ -172,18 +172,20 @@ app.post('/searchResult', function(req, res){
     })
     .then(response => {
         var myArrayId = [];
+        console.log(response);
         for(var i = 0; i < 20; i++){
             myArrayId.push(response.data.items[i].id.videoId)
 
         };
         res.render('pages/analysis', {
             videoId: myArrayId
+
         })
         console.log(myArrayId);
     })
-    .catch(function(error){
-        console.log(error);
-    })
+    // .catch(function(error){
+    //     console.log(error);
+    // })
 });
 
 

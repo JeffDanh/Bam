@@ -50,7 +50,7 @@
         }
         .img1-content{
             position: absolute;
-            top: 40%;
+            top: 80%;
             width: 100%;
             text-align: center;
             color: whitesmoke;
@@ -124,8 +124,6 @@
         }
         .feature-container .cl .cla:hover .fa{
             color: #fff;
-            
-
         }
         .feature-container .cl .cla:before{
             content: '';
@@ -140,7 +138,12 @@
         }
         #feature-text{
             color: #282e34;
-            margin-left: 20px;
+            margin: 20px;
+
+        }
+        .scroll{
+            color: white; 
+            font-size: 50px;
         }
 
     </style>
@@ -150,9 +153,10 @@
     <div class="img1">
         <div class="img1-content">
             
-            <h1 class="display-5">Bam</h1>
+            <!-- <h1 class="display-5">Bam</h1>
             <hr style="width: 35%; height: 1px; background: blueviolet;">
-            <h2 class="display-5"></h2>
+            <h2 class="display-5"></h2> -->
+            <a class="scroll" href="#cm"><i class="fa fa-angle-down"></i></a>
             
             
         </div>
@@ -172,7 +176,7 @@
             
             </div>
             <div id="feature-text">
-                <h2>Analyze</h2>
+                <h2 style="text-decoration: underline;">Analyze</h2>
                 <p>and more</p>
             </div>
             
@@ -183,7 +187,7 @@
             
             </div>
             <div id="feature-text">
-                <h2>Discuss</h2>
+                <h2 style="text-decoration: underline;">Discuss</h2>
                 <p>and more</p>
             </div>
             
@@ -194,7 +198,7 @@
             
             </div>
             <div id="feature-text">
-                <h2>Stopwatch</h2>
+                <h2 style="text-decoration: underline;">Stopwatch</h2>
                 <p>and more</p>
             </div>
             
@@ -205,7 +209,7 @@
             
             </div>
             <div id="feature-text">
-                <h2>Regimen</h2>
+                <h2 style="text-decoration: underline;">Regimen</h2>
                 <p>and more</p>
             </div>
             
@@ -223,7 +227,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     
     <script> 
-    
+        var scrollLink = $('.scroll');
+
+        scrollLink.click(function(e){
+            e.preventDefault();
+            $('body,html').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+
+        $(window).scroll(function(){
+            var scrollbarLocation = $(this).scrollTop();
+            scrollLink.each(function(){
+                var sectionOffset = $(this.hash).offset().top;
+            })
+        })
     </script>
   </body>
 </html>

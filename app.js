@@ -13,6 +13,8 @@ app.use(require('./routes/register'));
 app.use(require('./routes/profile'));
 // app.use(require('./routes/analysis'));
 app.use(require('./routes/logout'));
+app.use(require('./routes/regimen'));
+
 
 const initOptions = {
     promiseLib: promise

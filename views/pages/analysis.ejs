@@ -39,6 +39,39 @@
             height: 100%;
             background-color: rgb(44, 44, 44);
         }
+
+        .row{
+            text-align: center;
+            background-color: rgb(44, 44, 44);
+            justify-content: center;
+            padding-top: 20px;
+        }
+        #glasscontainer{
+            position: absolute;
+            position: sticky;
+            top: 10%;
+            width: 100%;
+            height: 500px;
+            z-index: 1;
+        }
+        #glass{
+            position: absolute;
+            position: sticky;
+            top: 10%;
+            width: 100%;
+            height: 500px;
+            background-color: black;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        #videos{
+            position: relative;
+            top: -20%;
+
+        }
+        iframe{
+            margin-top: 100px;
+        }
         
     </style>
 
@@ -100,21 +133,32 @@
     </div> -->
 
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-3">
             <form id="search-form" action="/analysis" method="POST">
                 <p><input type="text" id="search" name="searchResult" placeholder="Type something..." autocomplete="off" class="form-control" /></p>
                 <p><button type="submit" value="Search" class="form-control btn btn-primary w100">Search</button></p>
             </form>
             <div id="results"></div>
-        </div>
-    </div>
-    <div>
-            <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[0] %>" frameBorder="0" allowFullScreen></iframe>
-            <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[1] %>" frameBorder="0" allowFullScreen></iframe>
-            <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[2] %>" frameBorder="0" allowFullScreen></iframe>
-            <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[3] %>" frameBorder="0" allowFullScreen></iframe>
+
+            <div id="glasscontainer">
+                <button id="drawmode" type="button" value="draw" class="form-control btn btn-primary w100">Draw Mode Toggle</button>
+                <div id="glass">
+                    
+                </div>
+            </div>
             
+            <div id="videos">
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[0] %>" frameBorder="0" allowFullScreen></iframe>
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[1] %>" frameBorder="0" allowFullScreen></iframe>
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[2] %>" frameBorder="0" allowFullScreen></iframe>
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[3] %>" frameBorder="0" allowFullScreen></iframe>
+                
+            </div>
+        </div>
+        
     </div>
+
+    
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -123,6 +167,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     
     <script>
+        // toggle drawing board
+        // $("#drawmode").click(function(){
+        //     $("#glass").toggle(
+        //         function(){$("#glass").css({"z-index": "0"});},
+        //         function(){$("#glass").css({"z-index": "-1"});}
+                
+        //     );
+
+        // });
+
+        $("#drawmode").click(function(){
+            if($("#glass").css("z-index")==0){
+                $("#glass").css("z-index", "-1");
+            }else{
+                $("#glass").css("z-index", "1");
+            }
+        });
+
         // background select
         var body = $('#draw');
         $('#backgrounds').bind('change', function(event){

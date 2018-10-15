@@ -5,7 +5,8 @@ let axios = require('axios');
 router.get('/analysis', (req, res) => {
     res.render('pages/analysis', {
         pageTitle: "Analysis",
-        pageId: "Analysis"
+        pageId: "Analysis",
+        videoId: ['']
     });
 
 });

@@ -9,7 +9,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet'>
+
     <style>
         h5{
             text-align: center;
@@ -26,7 +32,7 @@
         }
         .img1{
             opacity: 0.8;
-            background-image: url('Jeff2.png');
+            background-image: url('https://storage.googleapis.com/xebia-blog/1/2016/03/Japanese-martial-arts-wallpapers-HD-Wallpapers-Backgrounds-Judo.jpg');
             min-height: 100%;
             background-position: center;
             background-size: cover;
@@ -38,8 +44,9 @@
             font-size: 18px;
         }
         .section-dark{
-            background-color: #282e34;
-            color: #ddd;
+            /* background-color: #282e34; */
+            background-color: white;
+            color: #282e34;
         }
         .img1-content{
             position: absolute;
@@ -75,78 +82,65 @@
         }
         #cm{
             min-height: 100%;
-            /* min-height: 800px; */
-            text-align: center;
-            margin-top: -50px;
+            margin-top: 0px;
         }
-        .contact-links{
-            margin-top: 100px;
+        .feature-container{
+            margin-top: 20px;
             display: flex;
-            justify-content: center;
-            /* position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-28%, -28%); */
-            transform: translate(-3%, -3%);
+            /* justify-content: center; */
+            /* transform: translate(-3%, -3%); */
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
         @media(max-width: 360px){
-            .contact-links{
+            .feature-container{
                 transform: translate(-7%, -7%);
             }
         }
-        .contact-links .cl{
+        .feature-container .cl{
             list-style: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
-        .contact-links .cl .cla{
-            width: 80px;
-            height: 80px;
+        .feature-container .cl .cla{
+            width: 200px;
+            height: 200px;
             background: #fff;
             text-align: center;
-            line-height: 75px;
-            font-size: 35px;
-            margin: 0px 10px;
+            line-height: 200px;
+            /* vertical position of icon */
+            font-size: 100px;
+            margin: 0px 0px;
             display: block;
-            border-radius: 50%;
+            /* border-radius: 50%; */
             position: relative;
             overflow: hidden;
-            border: 3px solid whitesmoke;
+            left: 0;
             z-index: 1;
         }
-        .contact-links .cl .cla .fa{
+        .feature-container .cl .cla .fa{
             position: relative;
             color: #262626;
             transition: .5s;
         }
-        .contact-links .cl .cla:hover .fa{
+        .feature-container .cl .cla:hover .fa{
             color: #fff;
-            transform: rotateY(360deg);
+            
 
         }
-        .contact-links .cl .cla:before{
+        .feature-container .cl .cla:before{
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #f00;
+            background: blueviolet;
             transition: .5s;
             /* z-index: 2; */
         }
-        .contact-links .cl .cla:hover:before{
-            top: 0;
-        }
-        .contact-links .cl:nth-child(1) .cla:before{
-            background: #0077B5;
-        }
-        .contact-links .cl:nth-child(2) .cla:before{
-            background: rgb(0, 255, 213);
-        }
-        .contact-links .cl:nth-child(3) .cla:before{
-            background: rgb(228, 110, 110);
-        }
-        .contact-links .cl:nth-child(4) .cla:before{
-            background: palegoldenrod;
+        #feature-text{
+            color: #282e34;
+            margin-left: 20px;
         }
 
     </style>
@@ -157,7 +151,7 @@
         <div class="img1-content">
             
             <h1 class="display-5">Bam</h1>
-            <hr style="width: 35%; height: 1px; background: deepskyblue;">
+            <hr style="width: 35%; height: 1px; background: blueviolet;">
             <h2 class="display-5"></h2>
             
             
@@ -165,20 +159,58 @@
     </div>
     
     <section id="cm" class="section section-dark">
-        <h2>Contact Me</h2>
+        <h2>Features</h2>
         <br>
-        <p>  Yes, you can contact me! You can find me on LinkedIn and GitHub or reach me by email. You can also checkout my resume below.<br> 
+        <p>  <br> 
                 <br>
             
         </p>
         <p></p>
-        <ul class="contact-links">
-            <li class="cl"><a class="cla" href="https://www.linkedin.com/in/jeff-duong/"><i class="fa fa-linkedin"></i></a></li>
-            <li class="cl"><a class="cla" href="https://github.com/JeffDanh"><i class="fa fa-github"></i></a></li>
-            <li class="cl"><a class="cla" href="mailto:jeffdanh@gmail.com"><i class="fa fa-envelope"></i></a></li>
-            <li class="cl"><a class="cla" href="Resume.pdf"><i class="fa fa-file"></i></a></li>
+        <div class="feature-container">
+            <div>
+                <li class="cl"><a class="cla" href="/analysis"><i class="fa fa-marker"></i></a></li>
             
-        </ul>
+            </div>
+            <div id="feature-text">
+                <h2>Analyze</h2>
+                <p>and more</p>
+            </div>
+            
+        </div>
+        <div class="feature-container">
+            <div>
+                <li class="cl"><a class="cla" href="/discussion"><i class="fa fa-comments"></i></a></li>
+            
+            </div>
+            <div id="feature-text">
+                <h2>Discuss</h2>
+                <p>and more</p>
+            </div>
+            
+        </div>
+        <div class="feature-container">
+            <div>
+                <li class="cl"><a class="cla" href="/stopwatch"><i class="fa fa-stopwatch"></i></a></li>
+            
+            </div>
+            <div id="feature-text">
+                <h2>Stopwatch</h2>
+                <p>and more</p>
+            </div>
+            
+        </div>
+        <div class="feature-container">
+            <div>
+                <li class="cl"><a class="cla" href="/regimen"><i class="fa fa-file"></i></a></li>
+            
+            </div>
+            <div id="feature-text">
+                <h2>Regimen</h2>
+                <p>and more</p>
+            </div>
+            
+        </div>
+
     </section>
 
     <!-- Optional JavaScript -->

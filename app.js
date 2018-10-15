@@ -67,8 +67,8 @@ app.get('/profile', (req, res, next) => {
     })
 });
 
-app.get('/drawingboard', (req, res, next) => {
-    res.render('pages/drawingboard', {
+app.get('/discussion', (req, res, next) => {
+    res.render('pages/discussion', {
 
     });
 });

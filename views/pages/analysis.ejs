@@ -62,6 +62,7 @@
             width: 100%;
             height: 500px;
             background-color: black;
+            color: white;
             opacity: 0.1;
             z-index: -1;
         }
@@ -160,7 +161,9 @@
             <button id="drawmode" type="button" value="draw" class="form-control btn btn-primary w100">Draw Mode Toggle</button>
             
             <div id="glass">
-                hello
+                <button id="undo-btn">Undo</button>
+                <input type="color" id="color-picker">
+                <canvas id="draw" width="640" height="360"></canvas>
             </div>
             <div id="videos">
                 <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[0] %>" frameBorder="0" allowFullScreen></iframe>

@@ -26,7 +26,7 @@
         }
 
         #draw {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/Uppercut2.jpg');
+            /* background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/Uppercut2.jpg'); */
             background-position: center;
             background-repeat: no-repeat;
             background-size: 40%;
@@ -45,14 +45,15 @@
             background-color: rgb(44, 44, 44);
             justify-content: center;
             padding-top: 20px;
+            /* width: 100%; */
         }
         #glasscontainer{
             position: absolute;
             position: sticky;
             top: 10%;
             width: 100%;
-            height: 500px;
-            z-index: 1;
+            /* height: 500px;
+            z-index: 1; */
         }
         #glass{
             position: absolute;
@@ -62,15 +63,28 @@
             height: 500px;
             background-color: black;
             opacity: 0.1;
-            z-index: 0;
+            z-index: -1;
         }
         #videos{
             position: relative;
             top: -20%;
-
+            /* position: absolute;
+            top: 20%; */
         }
         iframe{
             margin-top: 100px;
+        }
+        #draw-toggler{
+            position: absolute;
+            left: 0;
+            top: 100%;
+            padding: 8px;
+            width: 200px;
+            height: 40px;
+            background-color: red;
+            color: white;
+            text-align: center;
+            cursor: pointer;
         }
         
     </style>
@@ -141,12 +155,13 @@
             <div id="results"></div>
 
             <div id="glasscontainer">
-                <button id="drawmode" type="button" value="draw" class="form-control btn btn-primary w100">Draw Mode Toggle</button>
-                <div id="glass">
-                    
-                </div>
+                
             </div>
+            <button id="drawmode" type="button" value="draw" class="form-control btn btn-primary w100">Draw Mode Toggle</button>
             
+            <div id="glass">
+                hello
+            </div>
             <div id="videos">
                 <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[0] %>" frameBorder="0" allowFullScreen></iframe>
                 <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[1] %>" frameBorder="0" allowFullScreen></iframe>
@@ -155,7 +170,9 @@
                 
             </div>
         </div>
-        
+        <!-- <div id="draw-toggler">
+            Draw Mode Toggle
+        </div> -->
     </div>
 
     
@@ -170,7 +187,7 @@
         // toggle drawing board
         // $("#drawmode").click(function(){
         //     $("#glass").toggle(
-        //         function(){$("#glass").css({"z-index": "0"});},
+        //         function(){$("#glass").css({"z-index": "1"});},
         //         function(){$("#glass").css({"z-index": "-1"});}
                 
         //     );
@@ -178,10 +195,10 @@
         // });
 
         $("#drawmode").click(function(){
-            if($("#glass").css("z-index")==0){
-                $("#glass").css("z-index", "-1");
-            }else{
+            if($("#glass").css("z-index")==-1){
                 $("#glass").css("z-index", "1");
+            }else{
+                $("#glass").css("z-index", "-1");
             }
         });
 

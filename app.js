@@ -162,7 +162,7 @@ function onConnection(socket){
   
 io.on('connection', onConnection);
 
-app.post('/analysis', function(req, res){
+app.post('/videoanalysis', function(req, res){
     var video = req.body.searchResult;
     console.log(video);
     var url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBB0wDawlst6BcDYRbzpox6ZqcsidKXWJ0&part=snippet&order=relevance&maxResults=20";
@@ -178,7 +178,7 @@ app.post('/analysis', function(req, res){
             myArrayId.push(response.data.items[i].id.videoId)
 
         };
-        res.render('pages/analysis', {
+        res.render('pages/videoanalysis', {
             videoId: myArrayId
 
         })

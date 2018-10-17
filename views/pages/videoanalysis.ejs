@@ -8,32 +8,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css">
     <style>
-        
-
-        .videoSection{
-            height: 100%;
-            background-color: rgb(44, 44, 44);
-        }
 
         .row{
             text-align: center;
             background-color: rgb(44, 44, 44);
             justify-content: center;
-            padding-top: 20px;
+            /* padding-top: 20px; */
             /* width: 100%; */
-        }
-        #glasscontainer{
-            position: absolute;
-            position: sticky;
-            top: 10%;
-            width: 100%;
-            /* height: 500px;
-            z-index: 1; */
+            /* margin-top: -50px; */
         }
         #glass{
             position: absolute;
             position: sticky;
-            top: 10%;
+            top: -100px;
             width: 100%;
             height: 100%;
             background-color: black;
@@ -42,31 +29,14 @@
             z-index: -1;
         }
         #videos{
-            /* position: relative;
-            top: -20%; */
-            /* position: absolute;
-            top: 20%; */
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 20%;
-            
-            
+            top: 21%;
+            /* background-color: red; */
         }
         iframe{
-            margin-top: 100px;
-        }
-        #draw-toggler{
-            position: absolute;
-            left: 0;
-            top: 100%;
-            padding: 8px;
-            width: 200px;
-            height: 40px;
-            background-color: red;
-            color: white;
-            text-align: center;
-            cursor: pointer;
+            margin-top: 50px;
         }
         
     </style>
@@ -76,15 +46,16 @@
 
     <div class="row">
         
-            <form id="search-form" action="/analysis" method="POST">
+            <form id="search-form" action="/videoanalysis" method="POST">
                 <p><input type="text" id="search" name="searchResult" placeholder="Search video for analysis" autocomplete="off" class="form-control" /></p>
                 <p><button type="submit" value="Search" class="form-control btn btn-primary w100">Search</button></p>
             </form>
-            <div id="results"></div>
 
-            <!-- <div id="glasscontainer">
-                
-            </div> -->
+            <!-- <form id="search-form" class="form-inline my-2 my-lg-0" action="/videoanalysis" method="POST">
+                <input class="form-control mr-sm-2" type="search" name="searchResult" placeholder="Search video for analysis" autocomplete="off" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            
             <button id="drawmode" type="button" value="draw" class="form-control btn btn-primary w100">Draw Mode Toggle</button>
             
             <div id="glass">

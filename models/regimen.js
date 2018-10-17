@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   regimen.associate = function(models) {
     // associations can be defined here
+    regimen.belongsTo(models.users);
   };
   return regimen;
 };

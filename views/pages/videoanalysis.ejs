@@ -4,35 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Video Analysis</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css">
     <style>
-        body {
-            margin: 0;
-        }
-
-        .top-bar {
-            display: flex;
-            flex-direction: row;
-            background-color: rgb(34, 34, 34);
-            position: absolute;
-            width: 100%;
-        }
-
-        .top-bar * {
-            margin: 10px 10px;
-        }
-
-        #draw {
-            /* background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/Uppercut2.jpg'); */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 40%;
-            /* background-size: contain; */
-            display: block;
-            z-index: -1;
-        }
+        
 
         .videoSection{
             height: 100%;
@@ -59,17 +35,23 @@
             position: sticky;
             top: 10%;
             width: 100%;
-            height: 500px;
+            height: 100%;
             background-color: black;
             color: white;
-            opacity: 0.1;
+            opacity: 0.2;
             z-index: -1;
         }
         #videos{
-            position: relative;
-            top: -20%;
+            /* position: relative;
+            top: -20%; */
             /* position: absolute;
             top: 20%; */
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 20%;
+            
+            
         }
         iframe{
             margin-top: 100px;
@@ -91,90 +73,31 @@
 
 </head>
 <body>
-    
-    <div class="top-bar">
-        <button id="save-btn">Save</button>
-        <button id="undo-btn">Undo</button>
-        <button id="clear-btn">Clear</button>
-        <input type="color" id="color-picker">
-        <input type="range" id="brush-size" min="1" max="50" value="10">
-        <select id="backgrounds">
-            <option>Select basic demonstration</option>
-            <option value="images/jab.png">Jab</option>
-            <option value="images/cross.png">Cross</option>
-            <option value="images/hook.png">Hook</option>
-            <option value="images/uppercut.png">Uppercut</option>
-            <option value="images/elbow.png">Elbow strike</option>
-            <option value="images/knee.png">Knee strike</option>
-            <option value="images/frontkick.png">Front kick</option>
-            <option value="images/roundhouse.png">Roundhouse kick</option>
-            <option value="images/tieup.png">Tie up</option>
-            <option value="images/pummelclinch.png">Pummel clinch</option>
-            <option value="images/doubleleg.png">Double leg</option>
-            <option value="images/legtrip.png">Leg trip</option>
-            <option value="images/rearnakedchoke.png">Rear naked choke</option>
-            <option value="images/sidecontrol.png">Side control</option>
-            <option value="images/trianglechoke.png">Triangle choke</option>
-            <option value="images/kimura.png">Kimura</option>
-            <option value="images/fullmount.png">Full mount</option>
-            
-            <!-- <option value="https://upload.wikimedia.org/wikipedia/commons/e/e1/Uppercut2.jpg">Uppercut</option>     -->
-        </select>
-    </div>
-
-    <canvas id="draw"></canvas>
-
-    <!-- <div class="videoSection">
-        hello
-        <div class="enterVideo">
-            <h3>Search Youtube </h3>
-        </div>
-        <form action='/analysis' method='POST'>
-            <div class="search row">
-                <div class="col-md-4 col-1"></div>
-                <div class="col-md-4 col-10">
-                    <input type='text' id='searchbar' name='searchResult' placeholder='Search'>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-1"></div>
-                <div class="col-md-4 col-10">
-                    <button type='submit' id='searchbutton'>Search</button>
-                </div>
-            </div>
-        </form>
-        
-    </div> -->
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-3">
+        
             <form id="search-form" action="/analysis" method="POST">
                 <p><input type="text" id="search" name="searchResult" placeholder="Search video for analysis" autocomplete="off" class="form-control" /></p>
                 <p><button type="submit" value="Search" class="form-control btn btn-primary w100">Search</button></p>
             </form>
             <div id="results"></div>
 
-            <div id="glasscontainer">
+            <!-- <div id="glasscontainer">
                 
-            </div>
+            </div> -->
             <button id="drawmode" type="button" value="draw" class="form-control btn btn-primary w100">Draw Mode Toggle</button>
             
             <div id="glass">
                 <button id="undo-btn">Undo</button>
                 <input type="color" id="color-picker">
-                <canvas id="draw" width="auto" height="auto"></canvas>
+                <canvas id="draw"></canvas>
+                
             </div>
             <div id="videos">
                 <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[0] %>" frameBorder="0" allowFullScreen></iframe>
-                <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[1] %>" frameBorder="0" allowFullScreen></iframe>
-                <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[2] %>" frameBorder="0" allowFullScreen></iframe>
-                <iframe width="640" height="360" src="https://www.youtube.com/embed/<%= videoId[3] %>" frameBorder="0" allowFullScreen></iframe>
                 
             </div>
-        </div>
-        <!-- <div id="draw-toggler">
-            Draw Mode Toggle
-        </div> -->
+        
     </div>
 
     
@@ -202,18 +125,8 @@
             }else{
                 $("#glass").css("z-index", "-1");
             }
-        });
+            $("#search-form").toggle();
 
-        // background select
-        var body = $('#draw');
-        $('#backgrounds').bind('change', function(event){
-            var bg = $(this).val();
-            console.log(bg);
-            if(bg == null || typeof bg === 'undefined' || $.trim(bg) === '')
-                body.css('background-image', '');
-            else
-                body.css('background-image', "url('" + bg + "')");       
-            
         });
 
         // canvas

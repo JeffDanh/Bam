@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   users.associate = function(models) {
     // associations can be defined here
+    users.hasMany(models.regimen);
   };
   return users;
 };

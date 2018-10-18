@@ -15,6 +15,7 @@ app.use(require('./routes/analysis'));
 app.use(require('./routes/videoanalysis'));
 app.use(require('./routes/logout'));
 app.use(require('./routes/regimen'));
+app.use(require('./routes/browseRegimen'));
 
 
 const initOptions = {

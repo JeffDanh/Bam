@@ -128,11 +128,33 @@
                 No available regimens.
                 
             </div>
+            <div class="card card-body">
+                <p><%= category %></p>
+                <p><%= sessionLength %></p>
+                <p><%= schedule %></p>
+                <p><%= organization %></p>
+                <p><%= description %></p>
+                <p><%= note %></p>
+                
+            </div>
         </div>
         <div class="collapse" id="collapseExample">
             <div class="card card-body">
                 Your regimens.
             </div>
+            <% for (let i = 0; i < regimenArray.length; i++) { %>
+                <div class="card card-body">
+                    <p><%= regimenArray[i].category %></p>
+                    <p><%= regimenArray[i].session_length%></p>
+                    <p><%= regimenArray[i].schedule %></p>
+                    <p><%= regimenArray[i].organization %></p>
+                    <p><%= regimenArray[i].description %></p>
+                    <p><%= regimenArray[i].note %></p>
+                </div>
+            <% } %>
+            
+
+            
         </div>
         
     </div>
